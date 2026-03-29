@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database import get_db
@@ -72,3 +73,16 @@ def add_to_cart(
     
     db.commit()
     return {"message": "Added to cart"}
+
+@cart_router.post("/admin/reset")
+def reset_db(secret: str, db: Session = Depends(get_db)):
+    if secret != os.getenv("RESET_SECRET"):
+        raise HTTPException(status_code=403, detail="Forbidden")
+    db.query(OrderItem).delete()
+    db.query(Order).delete()
+    db.query(CartItem).delete()
+    db.query(Cart).delete()
+    db.query(User).delete()
+    db.query(Product).delete()
+    db.commit()
+    return {"message": "Database reset — restart the Render service to reseed"}
