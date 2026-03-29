@@ -35,3 +35,6 @@ export async function placeOrder(idempotencyKey: string): Promise<Order> {
 export async function addToCart(productId: number): Promise<void> {
   await api.post(`/cart/items?product_id=${productId}&quantity=1`);
 }
+
+
+console.log('API URL:', import.meta.env.VITE_API_URL);
