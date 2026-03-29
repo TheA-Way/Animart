@@ -11,7 +11,7 @@
             ⛩️  P R E M I U M  A N I M E  M E R C H  ⛩️
 </pre>
 
-<video src="readme/DomainExpansion.mp4" autoplay loop muted width="500"></video>
+<img src="README/DomainExpansion.gif" width="500" />
 
 
 <br/>
